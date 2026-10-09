@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silverworks - Terms &amp; Conditions</title>
+<meta name="description" content="Complete your Silverworks agreement with a full-quality reference image, an electronic signature, and a downloadable one-page PDF.">
+<style>
+  :root { --ink:#1d232b; --muted:#6b7480; --line:#d9dee5; --silver:#aab2bd; --accent:#2f3d4f; --bg:#eef1f5; --danger:#b42318; --ok:#067647; }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--ink); }
+  header.top { background: linear-gradient(135deg,#1d232b,#3a4656); color:#fff; padding:28px 16px 48px; text-align:center; }
+  .brand { display:inline-flex; align-items:center; gap:12px; }
+  .mark { width:44px; height:44px; border:2px solid var(--silver); border-radius:10px; display:grid; place-items:center; font-weight:800; letter-spacing:1px; }
+  .brand h1 { font-size:22px; letter-spacing:4px; margin:0; }
+  .tag { color:var(--silver); font-size:13px; margin-top:8px; }
+  main { max-width:760px; margin:-28px auto 40px; padding:0 14px; }
+  .card { background:#fff; border-radius:14px; box-shadow:0 6px 24px rgba(0,0,0,.06); padding:24px; margin-bottom:18px; }
+  h2 { font-size:18px; margin:0 0 16px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px 16px; }
+  .full { grid-column:1 / -1; }
+  label { display:block; font-size:13px; font-weight:600; margin-bottom:6px; color:#333c48; }
+  .req { color:var(--danger); }
+  input, select { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font:inherit; font-size:16px; background:#fff; color:var(--ink); }
+  input[readonly] { background:#f4f6f9; color:var(--muted); }
+  input:focus, select:focus { outline:2px solid #9fb3c8; border-color:transparent; }
+  .err { color:var(--danger); font-size:12px; margin-top:4px; display:none; }
+  .invalid input, .invalid select { border-color:var(--danger) !important; }
+  .invalid .drop, .invalid .sig-wrap { border-color:var(--danger) !important; }
+  .drop { border:2px dashed var(--silver); border-radius:12px; padding:22px; text-align:center; cursor:pointer; color:var(--muted); background:#fafbfc; }
+  .drop:hover { border-color:var(--accent); }
+  .drop small { display:block; margin-top:6px; font-size:12px; }
+  .preview { display:none; }
+  .preview img { max-width:100%; max-height:260px; border-radius:10px; border:1px solid var(--line); display:block; margin:0 auto; }
+  .link-btn { background:none; border:none; color:var(--danger); cursor:pointer; font:inherit; font-size:13px; padding:0; }
+  .link-btn.accent { color:var(--accent); font-weight:600; }
+  .terms { background:#f7f8fa; border:1px solid var(--line); border-radius:10px; padding:16px 18px; font-size:14px; line-height:1.6; max-height:280px; overflow:auto; }
+  .terms p { margin:0 0 10px; }
+  .agree { display:flex; gap:10px; align-items:flex-start; margin-top:14px; font-size:14px; }
+  .agree input { width:auto; margin-top:4px; }
+  .agree label { font-weight:400; font-size:14px; margin:0; }
+  .sig-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+  .sig-wrap { border:1px dashed var(--silver); border-radius:10px; background:#fff; position:relative; }
+  #sig { width:100%; height:180px; display:block; touch-action:none; cursor:crosshair; border-radius:10px; }
+  .sig-hint { position:absolute; left:14px; top:12px; color:#b0b7c0; font-size:13px; pointer-events:none; }
+  .printed { text-align:center; margin:10px auto 0; max-width:360px; font-size:15px; font-weight:600; border-top:1px solid var(--ink); padding-top:6px; }
+  .printed small { display:block; font-weight:400; color:var(--muted); font-size:12px; }
+  .note { font-size:12.5px; color:var(--muted); margin:14px 0 0; }
+  .btn { width:100%; padding:14px; border:none; border-radius:10px; background:var(--accent); color:#fff; font:inherit; font-weight:700; font-size:16px; cursor:pointer; }
+  .btn:disabled { opacity:.6; cursor:wait; }
+  .btn-ghost { background:#fff; color:var(--accent); border:1px solid var(--accent); }
+  footer { text-align:center; color:var(--muted); font-size:12px; padding:10px 0 30px; }
+  .overlay { position:fixed; inset:0; background:rgba(20,25,32,.6); display:none; place-items:center; padding:16px; z-index:10; }
+  .overlay.show { display:grid; }
+  .modal { background:#fff; border-radius:16px; padding:28px; max-width:440px; width:100%; text-align:center; }
+  .check { width:60px; height:60px; border-radius:50%; background:#e7f6ee; color:var(--ok); display:grid; place-items:center; font-size:30px; margin:0 auto 12px; }
+  .modal h3 { margin:0 0 8px; }
+  .modal p { color:#444; font-size:14px; margin:6px 0; }
+  .modal .btns { display:flex; gap:10px; margin-top:18px; }
+  .modal .btns .btn { font-size:14px; padding:12px; }
+  .btn, .btn-ghost, .link-btn { min-height:44px; }
+  .link-btn { display:inline-flex; align-items:center; }
+  @media (max-width:640px) {
+    header.top { padding:22px 14px 40px; }
+    main { margin-top:-24px; padding:0 10px; }
+    .card { padding:18px 16px; border-radius:12px; }
+    .grid { grid-template-columns:1fr; gap:14px; }
+    .brand h1 { font-size:18px; letter-spacing:3px; }
+    .tag { font-size:12px; }
+    .sig-top { flex-wrap:wrap; gap:6px; }
+    #sig { height:150px; }
+    .terms { font-size:15px; }
+    .overlay { padding:12px; }
+    .modal { padding:22px 18px; }
+    .modal .btns { flex-direction:column; }
+  }
+  @media (max-width:360px) {
+    .brand h1 { font-size:16px; }
+    .mark { width:38px; height:38px; }
+    .card { padding:14px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><div class="mark">SW</div><h1>SILVERWORKS</h1></div>
+  <div class="tag">Client Agreement &middot; Official Terms &amp; Conditions Portal</div>
+</header>
+
+<main>
+<form id="agreementForm" novalidate>
+
+  <div class="card">
+    <h2>Official Terms and Conditions Form</h2>
+    <div class="grid">
+      <div><label>Date (Auto-generated)</label><input id="date" readonly></div>
+      <div data-field="serial">
+        <label for="serial">Serial Number / Job Code <span class="req">*</span></label>
+        <input id="serial" autocomplete="off">
+        <div class="err"></div>
+      </div>
+
+      <div class="full" data-field="branch">
+        <label for="branch">Branch <span class="req">*</span></label>
+        <select id="branch"><option value="">Select branch</option></select>
+        <div class="err"></div>
+      </div>
+
+      <div data-field="clientName">
+        <label for="clientName">Client Name <span class="req">*</span></label>
+        <input id="clientName" autocomplete="off">
+        <div class="err"></div>
+      </div>
+
+      <div data-field="retailerName">
+        <label for="retailerName">Retailer Name <span class="req">*</span></label>
+        <input id="retailerName" autocomplete="off">
+        <div class="err"></div>
+      </div>
+
+      <div class="full">
+        <label for="waiverIS">Waiver / IS</label>
+        <input id="waiverIS" autocomplete="off">
+      </div>
+
+      <div class="full" data-field="clientEmail">
+        <label for="clientEmail">Client Email <span class="req">*</span></label>
+        <input id="clientEmail" type="email" autocomplete="email">
+        <div class="err"></div>
+      </div>
+
+      <div class="full" data-field="image">
+        <label>Upload Reference Image / Design <span class="req">*</span></label>
+        <div class="drop" id="drop">
+          <div>Click or drag image to upload</div>
+          <small>PNG, JPG, JPEG, WEBP &bull; Original image quality</small>
+        </div>
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp" hidden>
+        <div class="preview" id="preview">
+          <img id="previewImg" alt="Uploaded preview">
+          <div style="text-align:center;margin-top:8px"><button type="button" class="link-btn" id="removeImg">Remove image</button></div>
+        </div>
+        <div class="err"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Terms and Conditions</h2>
+    <div class="terms" id="terms"></div>
+    <div class="agree" data-field="agree">
+      <input type="checkbox" id="agree">
+      <div style="flex:1">
+        <label for="agree">I have read, understood, and agreed to the Terms and Conditions stated above. <span class="req">*</span></label>
+        <div class="err"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-field="signature">
+    <h2>Client E-Signature <span class="req">*</span></h2>
+    <div class="sig-top">
+      <span class="note" style="margin:0">Sign inside the box</span>
+      <button type="button" class="link-btn accent" id="clearSig">Clear Signature</button>
+    </div>
+    <div class="sig-wrap">
+      <canvas id="sig" width="800" height="260"></canvas>
+      <div class="sig-hint" id="sigHint">Sign here</div>
+    </div>
+    <div class="printed"><span id="printedText">[ Client Name Will Appear Here ]</span><small>Signature over Printed Name of Client</small></div>
+    <div class="err"></div>
+  </div>
+
+  <div class="card">
+    <button type="submit" class="btn" id="submitBtn">Submit &amp; Generate PDF</button>
+    <p class="note">* Submitting this form will automatically download a full PDF copy.</p>
+  </div>
+</form>
+</main>
+
+<footer>&copy; 2026 SILVERWORKS. All rights reserved. Secure Client Portal.</footer>
+
+<div class="overlay" id="success">
+  <div class="modal">
+    <div class="check">&#10003;</div>
+    <h3>Form Submitted Successfully!</h3>
+    <p>Your agreement has been processed successfully.</p>
+    <p>A PDF copy has been downloaded to your device.</p>
+    <p><strong>Confirmation email:</strong> <span id="sentTo"></span></p>
+    <p id="countdown" style="color:var(--muted)"></p>
+    <div class="btns">
+      <button type="button" class="btn btn-ghost" id="newEntry">Done / New Entry</button>
+      <button type="button" class="btn" id="goPortal">Go to Portal</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="shared.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const form = $('agreementForm');
+const drop = $('drop'), fileInput = $('file');
+const sig = $('sig'), sctx = sig.getContext('2d');
+let refImage = null;      // { dataUrl, width, height }
+let signed = false, drawing = false;
+let redirectTimer = null;
+
+/* ---------- setup ---------- */
+SW.CONFIG.BRANCHES.forEach(b => $('branch').add(new Option(b, b)));
+$('terms').innerHTML = SW.TERMS.map(t => '<p>' + t + '</p>').join('');
+initFixedFields();
+clearSignature();
+
+function initFixedFields() {
+  $('serial').value = SW.generateSerial(); // suggested value, user can edit it
+  $('date').value = SW.formatDate();
+}
+
+/* ---------- signature pad ---------- */
+function clearSignature() {
+  sctx.fillStyle = '#ffffff';
+  sctx.fillRect(0, 0, sig.width, sig.height);
+  sctx.strokeStyle = '#111111';
+  sctx.lineWidth = 4;
+  sctx.lineCap = 'round';
+  sctx.lineJoin = 'round';
+  signed = false;
+  $('sigHint').style.display = 'block';
+}
+function sigPos(e) {
+  const r = sig.getBoundingClientRect();
+  return { x: (e.clientX - r.left) * sig.width / r.width, y: (e.clientY - r.top) * sig.height / r.height };
+}
+sig.addEventListener('pointerdown', e => {
+  drawing = true;
+  sig.setPointerCapture(e.pointerId);
+  const p = sigPos(e);
+  sctx.beginPath();
+  sctx.moveTo(p.x, p.y);
+  sctx.lineTo(p.x + 0.1, p.y + 0.1);
+  sctx.stroke();
+  $('sigHint').style.display = 'none';
+  signed = true;
+  e.preventDefault();
+});
+sig.addEventListener('pointermove', e => {
+  if (!drawing) return;
+  const p = sigPos(e);
+  sctx.lineTo(p.x, p.y);
+  sctx.stroke();
+});
+const stopDrawing = () => { drawing = false; };
+sig.addEventListener('pointerup', stopDrawing);
+sig.addEventListener('pointercancel', stopDrawing);
+$('clearSig').addEventListener('click', () => { clearSignature(); clearErr('signature'); });
+
+/* ---------- printed name under signature ---------- */
+$('clientName').addEventListener('input', e => {
+  $('printedText').textContent = e.target.value.trim() || '[ Client Name Will Appear Here ]';
+});
+
+/* ---------- image upload ---------- */
+drop.addEventListener('click', () => fileInput.click());
+drop.addEventListener('dragover', e => { e.preventDefault(); drop.style.borderColor = 'var(--accent)'; });
+drop.addEventListener('dragleave', () => { drop.style.borderColor = ''; });
+drop.addEventListener('drop', e => {
+  e.preventDefault();
+  drop.style.borderColor = '';
+  handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+$('removeImg').addEventListener('click', () => {
+  refImage = null;
+  fileInput.value = '';
+  $('preview').style.display = 'none';
+  drop.style.display = 'block';
+});
+
+async function handleFile(f) {
+  if (!f) return;
+  if (!['image/png', 'image/jpeg', 'image/webp'].includes(f.type)) {
+    return showErr('image', 'Please upload a PNG, JPG, JPEG, or WEBP image.');
+  }
+  try {
+    refImage = await SW.fileToJpeg(f, 1200, 0.9);
+    $('previewImg').src = refImage.dataUrl;
+    $('preview').style.display = 'block';
+    drop.style.display = 'none';
+    clearErr('image');
+  } catch (err) {
+    showErr('image', err.message);
+  }
+}
+
+/* ---------- validation helpers ---------- */
+function fieldWrap(key) { return form.querySelector(`[data-field="${key}"]`); }
+function showErr(key, msg) {
+  const w = fieldWrap(key);
+  if (!w) return;
+  w.classList.add('invalid');
+  const e = w.querySelector('.err');
+  e.textContent = msg;
+  e.style.display = 'block';
+}
+function clearErr(key) {
+  const w = fieldWrap(key);
+  if (!w) return;
+  w.classList.remove('invalid');
+  const e = w.querySelector('.err');
+  if (e) e.style.display = 'none';
+}
+form.addEventListener('input', e => { const w = e.target.closest('[data-field]'); if (w) clearErr(w.dataset.field); });
+form.addEventListener('change', e => { const w = e.target.closest('[data-field]'); if (w) clearErr(w.dataset.field); });
+
+function validate() {
+  const email = $('clientEmail').value.trim();
+  const serialVal = $('serial').value.trim();
+  const serialTaken = serialVal && SW.loadTransactions().some(t => t.serial === serialVal);
+  const checks = [
+    ['serial',     serialVal && !serialTaken ? 'ok' : '',   serialTaken ? 'This serial number already exists. Please use another.' : 'Serial number / job code is required.'],
+    ['branch',     $('branch').value,                       'Please select a branch.'],
+    ['clientName', $('clientName').value.trim(),            'Client name is required.'],
+    ['retailerName', $('retailerName').value.trim(),        'Retailer name is required.'],
+    ['clientEmail', email && $('clientEmail').checkValidity() ? 'ok' : '', 'Enter a valid email address.'],
+    ['image',      refImage ? 'ok' : '',                    'Please upload a reference image or design.'],
+    ['agree',      $('agree').checked ? 'ok' : '',          'You must agree to the Terms and Conditions.'],
+    ['signature',  signed ? 'ok' : '',                      'Please provide your e-signature.'],
+  ];
+  let ok = true;
+  checks.forEach(([key, val, msg]) => {
+    if (!val) { showErr(key, msg); ok = false; }
+    else clearErr(key);
+  });
+  return ok;
+}
+
+/* ---------- submit ---------- */
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!validate()) {
+    const first = form.querySelector('.invalid');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const btn = $('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Generating PDF...';
+
+  const tx = {
+    id: SW.generateId(),
+    serial: $('serial').value.trim(),
+    date: SW.formatDate(),
+    createdAt: new Date().toISOString(),
+    branch: $('branch').value,
+    clientName: $('clientName').value.trim(),
+    retailerName: $('retailerName').value.trim(),
+    waiverIS: $('waiverIS').value.trim(),
+    clientEmail: $('clientEmail').value.trim(),
+    status: 'Pending',
+    referenceImage: refImage,
+    signature: { dataUrl: sig.toDataURL('image/jpeg', 0.92), width: sig.width, height: sig.height },
+  };
+
+  let saved = true;
+  try { SW.addTransaction(tx); }
+  catch (err) { saved = false; console.error(err); }
+
+  try {
+    SW.buildPDF(tx).save(`${tx.serial.replace(/[^A-Za-z0-9_-]+/g, '_')}.pdf`);
+  } catch (err) {
+    console.error(err);
+    alert('The PDF could not be generated: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = 'Submit & Generate PDF';
+    return;
+  }
+
+  if (!saved) {
+    alert('Your PDF was downloaded, but the record could not be saved to the portal (storage may be full). Please inform your branch.');
+  }
+
+  $('sentTo').textContent = tx.clientEmail;
+  $('success').classList.add('show');
+
+  if (saved) {
+    let secs = 3;
+    const tick = () => {
+      if (secs <= 0) { location.href = SW.CONFIG.PORTAL_URL; return; }
+      $('countdown').textContent = `Redirecting to the production portal in ${secs}...`;
+      secs--;
+      redirectTimer = setTimeout(tick, 1000);
+    };
+    tick();
+  }
+});
+
+$('goPortal').addEventListener('click', () => { location.href = SW.CONFIG.PORTAL_URL; });
+
+$('newEntry').addEventListener('click', () => {
+  clearTimeout(redirectTimer);
+  $('success').classList.remove('show');
+  form.reset();
+  refImage = null;
+  fileInput.value = '';
+  $('preview').style.display = 'none';
+  drop.style.display = 'block';
+  clearSignature();
+  $('printedText').textContent = '[ Client Name Will Appear Here ]';
+  form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+  form.querySelectorAll('.err').forEach(el => el.style.display = 'none');
+  initFixedFields();
+  const btn = $('submitBtn');
+  btn.disabled = false;
+  btn.textContent = 'Submit & Generate PDF';
+});
+</script>
+</body>
+</html>

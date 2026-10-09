@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silverworks - Production Portal</title>
+<style>
+  :root { --ink:#1d232b; --muted:#6b7480; --line:#d9dee5; --silver:#aab2bd; --accent:#2f3d4f; --bg:#eef1f5; --danger:#b42318; }
+  * { box-sizing:border-box; }
+  [hidden] { display:none !important; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--ink); }
+  .brand { display:inline-flex; align-items:center; gap:12px; }
+  .mark { width:40px; height:40px; border:2px solid var(--silver); border-radius:10px; display:grid; place-items:center; font-weight:800; color:#fff; letter-spacing:1px; }
+  .brand strong { letter-spacing:3px; font-size:18px; color:#fff; display:block; }
+  .brand .sub { color:var(--silver); font-size:12px; }
+  header.top { background:linear-gradient(135deg,#1d232b,#3a4656); padding:16px 22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .who { color:#fff; font-size:14px; display:flex; align-items:center; gap:12px; }
+  .card { background:#fff; border-radius:14px; box-shadow:0 6px 24px rgba(0,0,0,.06); padding:20px; }
+  .btn, .btn-sm { border:none; border-radius:9px; background:var(--accent); color:#fff; font:inherit; font-weight:600; cursor:pointer; }
+  .btn { width:100%; padding:12px; font-size:15px; }
+  .btn-sm { padding:7px 12px; font-size:13px; }
+  .btn-ghost { background:#fff; color:var(--accent); border:1px solid var(--accent); }
+  .btn-light { background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.3); }
+  input, select { font:inherit; font-size:16px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
+  .btn, .btn-sm { min-height:40px; }
+  input:focus, select:focus { outline:2px solid #9fb3c8; border-color:transparent; }
+
+  /* login */
+  .login { min-height:100vh; min-height:100dvh; display:grid; place-items:center; padding:16px; }
+  .login-card { width:100%; max-width:380px; }
+  .login-card h2 { margin:18px 0 4px; font-size:20px; }
+  .login-card p { color:var(--muted); font-size:14px; margin:0 0 18px; }
+  .login-card label { display:block; font-size:13px; font-weight:600; margin:12px 0 6px; }
+  .login-card input { width:100%; }
+  .err { color:var(--danger); font-size:13px; min-height:18px; margin-top:10px; }
+  .login-card .brand .mark { border-color:var(--accent); color:var(--accent); }
+  .login-card .brand strong { color:var(--ink); }
+  .login-card .brand .sub { color:var(--muted); }
+
+  /* dashboard */
+  main { max-width:1100px; margin:20px auto; padding:0 14px 40px; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px; }
+  .stat .num { font-size:28px; font-weight:700; }
+  .stat .lbl { color:var(--muted); font-size:13px; margin-top:2px; }
+  .toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+  .toolbar input { flex:1; min-width:220px; }
+  .count { color:var(--muted); font-size:13px; margin-left:auto; }
+  .table-wrap { overflow-x:auto; padding:0; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th, td { padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th { background:#f7f8fa; font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); }
+  .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; }
+  .badge { padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; background:#eef1f5; color:#333; }
+  .badge.pending { background:#fff4e5; color:#8a4b00; }
+  .badge.approved { background:#e7f0ff; color:#1d4ed8; }
+  .badge.in-production { background:#f1e9ff; color:#6b21a8; }
+  .badge.completed { background:#e7f6ee; color:#067647; }
+  .empty { text-align:center; padding:40px; color:var(--muted); }
+
+  /* modal */
+  .overlay { position:fixed; inset:0; background:rgba(20,25,32,.6); display:none; place-items:center; padding:16px; z-index:10; }
+  .overlay.show { display:grid; }
+  .modal { background:#fff; border-radius:16px; width:100%; max-width:640px; max-height:90vh; overflow:auto; padding:22px; }
+  .modal-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .modal-head h3 { margin:0; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:16px; }
+  .x { background:none; border:none; font-size:24px; cursor:pointer; color:var(--muted); }
+  .kvs { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-bottom:14px; }
+  .kv span { display:block; font-size:12px; color:var(--muted); }
+  .kv strong { font-size:14px; word-break:break-word; }
+  .modal h4 { margin:16px 0 8px; font-size:14px; }
+  .modal img { max-width:100%; border:1px solid var(--line); border-radius:10px; background:#fff; }
+  .modal .sigimg { max-height:120px; }
+  .modal-foot { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:18px; padding-top:14px; border-top:1px solid var(--line); }
+  .modal-foot .spacer { flex:1; }
+  .note { color:var(--muted); font-size:13px; }
+
+  @media (max-width:800px) {
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .kvs { grid-template-columns:1fr; }
+  }
+  @media (max-width:640px) {
+    main { margin:12px auto; padding:0 10px 30px; }
+    header.top { padding:14px 14px; }
+    .who { width:100%; justify-content:space-between; }
+    .stats { gap:10px; }
+    .stat { padding:14px; }
+    .stat .num { font-size:22px; }
+    .toolbar { margin-bottom:12px; }
+    .toolbar input, .toolbar select { width:100%; min-width:0; flex:1 1 100%; }
+    .count { margin-left:0; width:100%; }
+    .table-wrap { overflow:visible; }
+    table, thead, tbody, tr, td { display:block; }
+    thead { display:none; }
+    tr { border-bottom:1px solid var(--line); padding:12px 14px; }
+    tr:last-child { border-bottom:none; }
+    td { display:flex; justify-content:space-between; align-items:center; gap:12px; border:none; padding:5px 0; white-space:normal; text-align:right; word-break:break-word; }
+    td::before { content:attr(data-label); color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.4px; text-align:left; flex-shrink:0; }
+    td.action { justify-content:flex-end; padding-top:8px; }
+    td.action::before { display:none; }
+    td.action .btn-sm { width:100%; padding:10px; }
+    .modal { max-width:none; max-height:100vh; height:100%; border-radius:0; padding:18px 16px; }
+    .overlay { padding:0; }
+    .modal-foot { flex-direction:column; align-items:stretch; }
+    .modal-foot .spacer { display:none; }
+    .modal-foot select, .modal-foot button { width:100%; }
+    .modal-foot .btn-sm { padding:12px; }
+  }
+  @media (max-width:360px) {
+    .brand strong { font-size:16px; letter-spacing:2px; }
+    .stat .num { font-size:20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<section id="loginView" class="login">
+  <div class="card login-card">
+    <div class="brand"><div class="mark">SW</div><div><strong>SILVERWORKS</strong><div class="sub">Production Portal</div></div></div>
+    <h2>Sign in</h2>
+    <p>Branch users see their branch's transactions. Production Head sees all branches.</p>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input id="username" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <div class="err" id="loginErr"></div>
+      <button type="submit" class="btn">Log in</button>
+    </form>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="appView" hidden>
+  <header class="top">
+    <div class="brand"><div class="mark">SW</div><div><strong>SILVERWORKS</strong><div class="sub" id="scope"></div></div></div>
+    <div class="who"><span id="whoami"></span><button class="btn-sm btn-light" id="logoutBtn">Log out</button></div>
+  </header>
+
+  <main>
+    <section class="stats" id="stats"></section>
+
+    <div class="card toolbar">
+      <input id="search" placeholder="Search serial, client, retailer, email..." autocomplete="off">
+      <select id="statusFilter"><option value="">All statuses</option></select>
+      <span class="count" id="count"></span>
+    </div>
+
+    <div class="card table-wrap">
+      <table>
+        <thead>
+          <tr><th>Serial</th><th>Date</th><th>Branch</th><th>Client</th><th>Retailer</th><th>Email</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty" hidden>No transactions found.</div>
+    </div>
+  </main>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="overlay" id="modal">
+  <div class="modal">
+    <div class="modal-head"><h3 id="mTitle"></h3><button class="x" id="mClose" aria-label="Close">&times;</button></div>
+    <div id="mBody"></div>
+    <div class="modal-foot">
+      <button class="btn-sm btn-ghost" id="mPdf">Download PDF</button>
+      <span class="spacer"></span>
+      <select id="mStatus"></select>
+      <button class="btn-sm" id="mSave">Save status</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="shared.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+let session = null;
+let openId = null;
+
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const statusClass = s => String(s || '').toLowerCase().replace(/\s+/g, '-');
+
+/* ---------- login / logout ---------- */
+$('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const s = SW.login($('username').value, $('password').value);
+  if (!s) { $('loginErr').textContent = 'Invalid username or password.'; return; }
+  $('loginErr').textContent = '';
+  $('password').value = '';
+  session = s;
+  init();
+});
+$('logoutBtn').addEventListener('click', () => {
+  SW.logout();
+  session = null;
+  closeModal();
+  init();
+});
+
+/* ---------- init ---------- */
+function init() {
+  session = session || SW.getSession();
+  if (!session) {
+    $('loginView').hidden = false;
+    $('appView').hidden = true;
+    return;
+  }
+  $('loginView').hidden = true;
+  $('appView').hidden = false;
+  $('whoami').textContent = session.displayName;
+  $('scope').textContent = session.role === 'production_head'
+    ? 'Production Head \u00B7 All branches'
+    : 'Branch: ' + session.branch;
+
+  const sel = $('statusFilter');
+  if (sel.options.length <= 1) SW.CONFIG.STATUSES.forEach(s => sel.add(new Option(s, s)));
+  render();
+}
+
+/* ---------- render (role-filtered) ---------- */
+function render() {
+  // Role-based access: only transactions this session is allowed to see
+  const all = SW.visibleTransactions(session);
+
+  const q = $('search').value.trim().toLowerCase();
+  const st = $('statusFilter').value;
+  const list = all.filter(tx =>
+    (!st || tx.status === st) &&
+    (!q || [tx.serial, tx.clientName, tx.retailerName, tx.clientEmail, tx.branch]
+      .some(v => String(v || '').toLowerCase().includes(q)))
+  );
+
+  const count = s => all.filter(t => t.status === s).length;
+  $('stats').innerHTML = [
+    ['Total', all.length], ['Pending', count('Pending')],
+    ['In Production', count('In Production')], ['Completed', count('Completed')],
+  ].map(([l, v]) => `<div class="card stat"><div class="num">${v}</div><div class="lbl">${l}</div></div>`).join('');
+
+  $('count').textContent = list.length + ' shown';
+  $('empty').hidden = list.length > 0;
+  $('rows').innerHTML = list.map(tx => `
+    <tr>
+      <td class="mono" data-label="Serial">${esc(tx.serial)}</td>
+      <td data-label="Date">${esc(tx.date)}</td>
+      <td data-label="Branch">${esc(tx.branch)}</td>
+      <td data-label="Client">${esc(tx.clientName)}</td>
+      <td data-label="Retailer">${esc(tx.retailerName)}</td>
+      <td data-label="Email">${esc(tx.clientEmail)}</td>
+      <td data-label="Status"><span class="badge ${statusClass(tx.status)}">${esc(tx.status)}</span></td>
+      <td class="action"><button class="btn-sm" data-id="${esc(tx.id)}">View</button></td>
+    </tr>`).join('');
+}
+
+$('search').addEventListener('input', render);
+$('statusFilter').addEventListener('change', render);
+
+/* ---------- details (access re-checked before opening) ---------- */
+$('rows').addEventListener('click', e => {
+  const b = e.target.closest('button[data-id]');
+  if (b) openTx(b.dataset.id);
+});
+
+function accessibleTx(id) {
+  return SW.visibleTransactions(session).find(t => t.id === id) || null;
+}
+
+function kv(k, v) { return `<div class="kv"><span>${esc(k)}</span><strong>${esc(v || '-')}</strong></div>`; }
+
+function openTx(id) {
+  const tx = accessibleTx(id);
+  if (!tx) { alert('You do not have access to this transaction.'); return; }
+  openId = id;
+  $('mTitle').textContent = tx.serial;
+  $('mBody').innerHTML = `
+    <div class="kvs">
+      ${kv('Date', tx.date)}
+      ${kv('Branch', tx.branch)}
+      ${kv('Client Name', tx.clientName)}
+      ${kv('Retailer Name', tx.retailerName)}
+      ${kv('Waiver / IS', tx.waiverIS)}
+      ${kv('Client Email', tx.clientEmail)}
+      ${kv('Submitted', tx.createdAt ? new Date(tx.createdAt).toLocaleString('en-PH') : '')}
+      ${kv('Status', tx.status)}
+    </div>
+    <h4>Reference Image / Design</h4>
+    <img src="${tx.referenceImage.dataUrl}" alt="Reference image">
+    <h4>Client E-Signature</h4>
+    <img class="sigimg" src="${tx.signature.dataUrl}" alt="Client signature">
+    <p class="note">Terms and Conditions: accepted</p>`;
+
+  const canEdit = SW.canChangeStatus(session);
+  $('mStatus').innerHTML = SW.CONFIG.STATUSES.map(s =>
+    `<option ${s === tx.status ? 'selected' : ''}>${esc(s)}</option>`).join('');
+  $('mStatus').hidden = !canEdit;
+  $('mSave').hidden = !canEdit;
+
+  $('modal').classList.add('show');
+}
+
+function closeModal() {
+  $('modal').classList.remove('show');
+  openId = null;
+}
+$('mClose').addEventListener('click', closeModal);
+$('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+
+$('mPdf').addEventListener('click', () => {
+  const tx = openId && accessibleTx(openId);
+  if (!tx) return;
+  SW.buildPDF(tx).save(`${tx.serial.replace(/[^A-Za-z0-9_-]+/g, '_')}.pdf`);
+});
+
+$('mSave').addEventListener('click', () => {
+  // Only the Production Head may change status
+  if (!SW.canChangeStatus(session) || !openId) return;
+  if (!accessibleTx(openId)) return;
+  SW.updateTransaction(openId, { status: $('mStatus').value });
+  closeModal();
+  render();
+});
+
+// Refresh the list if a new submission arrives in another tab on this site
+window.addEventListener('storage', e => {
+  if (e.key === SW.CONFIG.TX_KEY && session) render();
+});
+
+init();
+</script>
+</body>
+</html>
