@@ -60,13 +60,66 @@ const SW = (() => {
     ],
     TX_KEY: 'silverworks_transactions',
     SESSION_KEY: 'silverworks_session',
-    STATUSES: ['Pending', 'Approved', 'In Production', 'Completed'],
+    STATUSES: ['Pending', 'Sent to Production', 'In Production', 'Completed'],
     // DEMO accounts only. Real logins must be checked on a server (see notes).
     USERS: [
-      { username: 'chelseakaye', password: 'imsopretty',    role: 'production_head', branch: null,       displayName: 'ChelseaKaye' },
-      { username: 'production', password: 'production123', role: 'production_head', branch: null,       displayName: 'Production Head' },
-      { username: 'smmoa',      password: 'moa123',        role: 'branch',           branch: 'SM Mall of Asia (Pasay City)',   displayName: 'SM Mall of Asia' },
-      { username: 'smmegamall', password: 'megamall123',   role: 'branch',           branch: 'SM Megamall (Mandaluyong City)', displayName: 'SM Megamall' },
+      { username: 'randolf',     password: 'imreinhehe',    role: 'super_admin', branch: null, displayName: 'Randolf (Super Admin)' },
+      { username: 'chelseakaye', password: 'imsopretty',    role: 'production_head', branch: null, displayName: 'ChelseaKaye' },
+      { username: 'production',  password: 'production123', role: 'production_head', branch: null, displayName: 'Production Head' },
+      { username: 'smmallofasia', password: 'f2LJo51Y', role: 'branch', branch: 'SM Mall of Asia (Pasay City)', displayName: 'SM Mall of Asia' },
+      { username: 'smmegamall', password: 'hrJOezSR', role: 'branch', branch: 'SM Megamall (Mandaluyong City)', displayName: 'SM Megamall' },
+      { username: 'smcitynorthedsa', password: 'fvmv81ab', role: 'branch', branch: 'SM City North EDSA (Quezon City)', displayName: 'SM City North EDSA' },
+      { username: 'smcitymanila', password: 'cwcqsXgA', role: 'branch', branch: 'SM City Manila (Ermita, Manila)', displayName: 'SM City Manila' },
+      { username: 'smcitysanlazaro', password: 'l10rSEtR', role: 'branch', branch: 'SM City San Lazaro (Sta. Cruz, Manila)', displayName: 'SM City San Lazaro' },
+      { username: 'smcitystamesa', password: '88CNbuNw', role: 'branch', branch: 'SM City Sta. Mesa (Mesa, Manila)', displayName: 'SM City Sta. Mesa' },
+      { username: 'smcityfairview', password: 'Cyt2goHr', role: 'branch', branch: 'SM City Fairview (Quezon City)', displayName: 'SM City Fairview' },
+      { username: 'smcitynovaliches', password: 'IhpDYatY', role: 'branch', branch: 'SM City Novaliches (Quezon City)', displayName: 'SM City Novaliches' },
+      { username: 'smcitymarikina', password: '8a88gZ0N', role: 'branch', branch: 'SM City Marikina (Marikina City)', displayName: 'SM City Marikina' },
+      { username: 'smcitybicutan', password: 'LVHEMupt', role: 'branch', branch: 'SM City Bicutan (Paranaque City)', displayName: 'SM City Bicutan' },
+      { username: 'smsouthmall', password: '2mVY3Kam', role: 'branch', branch: 'SM Southmall (Alabang-Zapote Rd, Las Piñas)', displayName: 'SM Southmall' },
+      { username: 'smcitysucat', password: 'zi3X5ZXW', role: 'branch', branch: 'SM City Sucat (Paranaque City)', displayName: 'SM City Sucat' },
+      { username: 'smcenterangono', password: 'VWFFI5o2', role: 'branch', branch: 'SM Center Angono (Rizal)', displayName: 'SM Center Angono' },
+      { username: 'smcitymasinag', password: 'HWWmP8ab', role: 'branch', branch: 'SM City Masinag (Antipolo, Rizal)', displayName: 'SM City Masinag' },
+      { username: 'smcitytaytay', password: 'NEw3nIjr', role: 'branch', branch: 'SM City Taytay (Rizal)', displayName: 'SM City Taytay' },
+      { username: 'smcitybacoor', password: '5Fbv21rB', role: 'branch', branch: 'SM City Bacoor (Cavite)', displayName: 'SM City Bacoor' },
+      { username: 'smcitydasmarias', password: 'AWnKes7n', role: 'branch', branch: 'SM City Dasmariñas (Cavite)', displayName: 'SM City Dasmariñas' },
+      { username: 'smcitytanza', password: 'fjLltMkx', role: 'branch', branch: 'SM City Tanza (Cavite)', displayName: 'SM City Tanza' },
+      { username: 'smcitysantarosa', password: 'FkVTLtYv', role: 'branch', branch: 'SM City Santa Rosa (Laguna)', displayName: 'SM City Santa Rosa' },
+      { username: 'smcitycalamba', password: '3QdvWp8i', role: 'branch', branch: 'SM City Calamba (Laguna)', displayName: 'SM City Calamba' },
+      { username: 'smcitysanpablo', password: 'vLUBi0fZ', role: 'branch', branch: 'SM City San Pablo (Laguna)', displayName: 'SM City San Pablo' },
+      { username: 'smcitylipa', password: 'wRkS3HAk', role: 'branch', branch: 'SM City Lipa (Batangas)', displayName: 'SM City Lipa' },
+      { username: 'smcitybatangas', password: '1RQQYRbG', role: 'branch', branch: 'SM City Batangas (Batangas City)', displayName: 'SM City Batangas' },
+      { username: 'smcitylucena', password: 'lE2eMRqm', role: 'branch', branch: 'SM City Lucena (Quezon Province)', displayName: 'SM City Lucena' },
+      { username: 'smcitynaga', password: '1lMrZG8k', role: 'branch', branch: 'SM City Naga (Camarines Sur)', displayName: 'SM City Naga' },
+      { username: 'smcitysanjosedelmonte', password: '4Yt72S89', role: 'branch', branch: 'SM City San Jose Del Monte (Bulacan)', displayName: 'SM City San Jose Del Monte' },
+      { username: 'smcitymarilao', password: 'dxfI2rW1', role: 'branch', branch: 'SM City Marilao (Bulacan)', displayName: 'SM City Marilao' },
+      { username: 'smcitybaliwag', password: 'hakZlmzf', role: 'branch', branch: 'SM City Baliwag (Bulacan)', displayName: 'SM City Baliwag' },
+      { username: 'smcitypampanga', password: 'Oa0C4n4k', role: 'branch', branch: 'SM City Pampanga (San Fernando, Pampanga)', displayName: 'SM City Pampanga' },
+      { username: 'smcityclark', password: 'zBbOUIpl', role: 'branch', branch: 'SM City Clark (Angeles, Pampanga)', displayName: 'SM City Clark' },
+      { username: 'smcitycabanatuan', password: 'WYbXrVQQ', role: 'branch', branch: 'SM City Cabanatuan (Nueva Ecija)', displayName: 'SM City Cabanatuan' },
+      { username: 'smcitylaunion', password: 'RnQjNvz7', role: 'branch', branch: 'SM City La Union (San Fernando, La Union)', displayName: 'SM City La Union' },
+      { username: 'smcitycebu', password: '4nMBo5G9', role: 'branch', branch: 'SM City Cebu (Cebu City)', displayName: 'SM City Cebu' },
+      { username: 'smseasidecitycebu', password: 'bO0dEpHD', role: 'branch', branch: 'SM Seaside City Cebu (Cebu City)', displayName: 'SM Seaside City Cebu' },
+      { username: 'smcityiloilo', password: 'F6FPU7S4', role: 'branch', branch: 'SM City Iloilo (Mandurriao, Iloilo City)', displayName: 'SM City Iloilo' },
+      { username: 'smcitybacolod', password: 'xSmIi0d6', role: 'branch', branch: 'SM City Bacolod (Bacolod City)', displayName: 'SM City Bacolod' },
+      { username: 'smcitydavao', password: 'SRpIn6KA', role: 'branch', branch: 'SM City Davao (Ecoland, Davao City)', displayName: 'SM City Davao' },
+      { username: 'smcdodowntownpremier', password: 'KpHNs1E4', role: 'branch', branch: 'SM CDO Downtown Premier (Cagayan de Oro)', displayName: 'SM CDO Downtown Premier' },
+      { username: 'smcitygeneralsantos', password: 'W081R8YU', role: 'branch', branch: 'SM City General Santos (South Cotabato)', displayName: 'SM City General Santos' },
+      { username: 'robinsonsplacemanila', password: 'nyNyhFrb', role: 'branch', branch: 'Robinsons Place Manila (Ermita, Manila)', displayName: 'Robinsons Place Manila' },
+      { username: 'robinsonsgalleria', password: '1Ehm4VlC', role: 'branch', branch: 'Robinsons Galleria (Ortigas Center, Quezon City)', displayName: 'Robinsons Galleria' },
+      { username: 'robinsonsmetroeast', password: 'gBaqw3Vf', role: 'branch', branch: 'Robinsons Metro East (Pasig City / Cainta)', displayName: 'Robinsons Metro East' },
+      { username: 'robinsonsantipolo', password: 'zLT0mlMA', role: 'branch', branch: 'Robinsons Antipolo (Rizal)', displayName: 'Robinsons Antipolo' },
+      { username: 'robinsonsgeneraltrias', password: 'pLBVKIfY', role: 'branch', branch: 'Robinsons General Trias (Cavite)', displayName: 'Robinsons General Trias' },
+      { username: 'robinsonsstarmills', password: 'VjjDEqho', role: 'branch', branch: 'Robinsons Starmills (San Fernando, Pampanga)', displayName: 'Robinsons Starmills' },
+      { username: 'glorietta', password: 'cgDUnmPo', role: 'branch', branch: 'Glorietta (Ayala Center, Makati City)', displayName: 'Glorietta' },
+      { username: 'trinoma', password: 'zmV2kl7v', role: 'branch', branch: 'TriNoma (North Triangle, Quezon City)', displayName: 'TriNoma' },
+      { username: 'marketmarket', password: 'sKM1Sx3h', role: 'branch', branch: 'Market! Market! (BGC, Taguig City)', displayName: 'Market! Market!' },
+      { username: 'abreezamall', password: 'feqECJlK', role: 'branch', branch: 'Abreeza Mall (Davao City)', displayName: 'Abreeza Mall' },
+      { username: 'centriomall', password: 'My0gYhOi', role: 'branch', branch: 'Centrio Mall (Cagayan de Oro)', displayName: 'Centrio Mall' },
+      { username: 'festivalsupermallfilinvestalabang', password: 'LyLjqpnp', role: 'branch', branch: 'Festival Supermall / Filinvest Alabang (Muntinlupa City)', displayName: 'Festival Supermall / Filinvest Alabang' },
+      { username: 'staluciaeastgrandmall', password: 'A9vwm2l6', role: 'branch', branch: 'Sta. Lucia East Grand Mall (Cainta, Rizal)', displayName: 'Sta. Lucia East Grand Mall' },
+      { username: 'fishermall', password: 'IDxNVWF7', role: 'branch', branch: 'Fisher Mall (Quezon Avenue, Quezon City)', displayName: 'Fisher Mall' },
+      { username: 'limketkaimall', password: 'JWvJLVH4', role: 'branch', branch: 'Limketkai Mall (Cagayan de Oro City)', displayName: 'Limketkai Mall' },
     ],
   };
 
@@ -123,17 +176,41 @@ const SW = (() => {
   }
   function logout() { sessionStorage.removeItem(CONFIG.SESSION_KEY); }
 
-  // Production Head sees every branch. A branch user sees only transactions for their own branch.
+  // Access rules:
+  //  - Branch: sees only its own forms, including Pending ones. Can send its own Pending forms to production.
+  //    The form stays in the branch list as its copy.
+  //  - Production Head: sees only forms sent to production (not Pending). Moves them to In Production, then Completed.
+  //  - Super Admin: sees every form and can take any step.
   function canViewTransaction(session, tx) {
     if (!session) return false;
-    if (session.role === 'production_head') return true;
+    if (session.role === 'super_admin') return true;
+    if (session.role === 'production_head') return tx.status !== 'Pending';
     return session.role === 'branch' && tx.branch === session.branch;
   }
   function visibleTransactions(session) {
     return loadTransactions().filter(tx => canViewTransaction(session, tx));
   }
-  function canChangeStatus(session) {
-    return !!session && session.role === 'production_head';
+  // The single next step this account may take on a form, or null if it has none
+  function nextStatus(session, tx) {
+    if (!session || !canViewTransaction(session, tx)) return null;
+    const isSuper = session.role === 'super_admin';
+    const isProduction = session.role === 'production_head' || isSuper;
+    const isOwnBranch = session.role === 'branch' && tx.branch === session.branch;
+    if (tx.status === 'Pending' && (isSuper || isOwnBranch)) return 'Sent to Production';
+    if (tx.status === 'Sent to Production' && isProduction) return 'In Production';
+    if (tx.status === 'In Production' && isProduction) return 'Completed';
+    return null;
+  }
+  // Moves a form to its next status and records who did it and when
+  function advanceStatus(session, id) {
+    const list = loadTransactions();
+    const tx = list.find(t => t.id === id);
+    const next = tx && nextStatus(session, tx);
+    if (!next) return null;
+    tx.status = next;
+    tx.statusLog = (tx.statusLog || []).concat([{ status: next, at: new Date().toISOString(), by: session.displayName }]);
+    saveTransactions(list);
+    return next;
   }
 
   /* ---------- images ---------- */
@@ -234,7 +311,7 @@ const SW = (() => {
     CONFIG, TERMS, AGREEMENT,
     loadTransactions, addTransaction, updateTransaction,
     generateSerial, generateId, formatDate,
-    login, getSession, logout, canViewTransaction, visibleTransactions, canChangeStatus,
+    login, getSession, logout, canViewTransaction, visibleTransactions, nextStatus, advanceStatus,
     fileToJpeg, buildPDF,
   };
 })();
