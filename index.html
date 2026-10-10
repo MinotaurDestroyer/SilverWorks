@@ -6,15 +6,17 @@
 <title>Silverworks - Terms &amp; Conditions</title>
 <meta name="description" content="Complete your Silverworks agreement with a full-quality reference image, an electronic signature, and a downloadable one-page PDF.">
 <style>
-  :root { --ink:#1d232b; --muted:#6b7480; --line:#d9dee5; --silver:#aab2bd; --accent:#2f3d4f; --bg:#eef1f5; --danger:#b42318; --ok:#067647; }
+  :root { --ink:#123524; --muted:#4F6F5E; --line:#D2F5E2; --silver:#50C878; --accent:#0F7A4F; --bg:#EEF9F3; --rose:#50C878; --blush:#D2F5E2; --danger:#b42318; --ok:#067647; }
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
   body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--ink); }
-  header.top { background: linear-gradient(135deg,#1d232b,#3a4656); color:#fff; padding:28px 16px 48px; text-align:center; }
+  header.top { background: linear-gradient(135deg,#50C878,#0F7A4F); color:#fff; padding:28px 16px 48px; text-align:center; }
   .brand { display:inline-flex; align-items:center; gap:12px; }
-  .mark { width:44px; height:44px; border:2px solid var(--silver); border-radius:10px; display:grid; place-items:center; font-weight:800; letter-spacing:1px; }
+  .mark { width:44px; height:44px; border:2px solid #EEF9F3; border-radius:10px; display:grid; place-items:center; font-weight:800; letter-spacing:1px; }
+  a.mark { text-decoration:none; cursor:pointer; color:#fff; }
+  a.mark:focus-visible { outline:2px solid var(--rose); outline-offset:3px; }
   .brand h1 { font-size:22px; letter-spacing:4px; margin:0; }
-  .tag { color:var(--silver); font-size:13px; margin-top:8px; }
+  .tag { color:#EEF9F3; font-size:13px; margin-top:8px; }
   main { max-width:760px; margin:-28px auto 40px; padding:0 14px; }
   .card { background:#fff; border-radius:14px; box-shadow:0 6px 24px rgba(0,0,0,.06); padding:24px; margin-bottom:18px; }
   h2 { font-size:18px; margin:0 0 16px; }
@@ -23,19 +25,19 @@
   label { display:block; font-size:13px; font-weight:600; margin-bottom:6px; color:#333c48; }
   .req { color:var(--danger); }
   input, select { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font:inherit; font-size:16px; background:#fff; color:var(--ink); }
-  input[readonly] { background:#f4f6f9; color:var(--muted); }
-  input:focus, select:focus { outline:2px solid #9fb3c8; border-color:transparent; }
+  input[readonly] { background:#EEF9F3; color:var(--muted); }
+  input:focus, select:focus { outline:2px solid var(--rose); border-color:transparent; }
   .err { color:var(--danger); font-size:12px; margin-top:4px; display:none; }
   .invalid input, .invalid select { border-color:var(--danger) !important; }
   .invalid .drop, .invalid .sig-wrap { border-color:var(--danger) !important; }
-  .drop { border:2px dashed var(--silver); border-radius:12px; padding:22px; text-align:center; cursor:pointer; color:var(--muted); background:#fafbfc; }
+  .drop { border:2px dashed var(--silver); border-radius:12px; padding:22px; text-align:center; cursor:pointer; color:var(--muted); background:#EEF9F3; }
   .drop:hover { border-color:var(--accent); }
   .drop small { display:block; margin-top:6px; font-size:12px; }
   .preview { display:none; }
   .preview img { max-width:100%; max-height:260px; border-radius:10px; border:1px solid var(--line); display:block; margin:0 auto; }
   .link-btn { background:none; border:none; color:var(--danger); cursor:pointer; font:inherit; font-size:13px; padding:0; }
   .link-btn.accent { color:var(--accent); font-weight:600; }
-  .terms { background:#f7f8fa; border:1px solid var(--line); border-radius:10px; padding:16px 18px; font-size:14px; line-height:1.6; max-height:280px; overflow:auto; }
+  .terms { background:#EEF9F3; border:1px solid var(--line); border-radius:10px; padding:16px 18px; font-size:14px; line-height:1.6; max-height:280px; overflow:auto; }
   .terms p { margin:0 0 10px; }
   .agree { display:flex; gap:10px; align-items:flex-start; margin-top:14px; font-size:14px; }
   .agree input { width:auto; margin-top:4px; }
@@ -43,7 +45,7 @@
   .sig-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
   .sig-wrap { border:1px dashed var(--silver); border-radius:10px; background:#fff; position:relative; }
   #sig { width:100%; height:180px; display:block; touch-action:none; cursor:crosshair; border-radius:10px; }
-  .sig-hint { position:absolute; left:14px; top:12px; color:#b0b7c0; font-size:13px; pointer-events:none; }
+  .sig-hint { position:absolute; left:14px; top:12px; color:#9ED9B6; font-size:13px; pointer-events:none; }
   .printed { text-align:center; margin:10px auto 0; max-width:360px; font-size:15px; font-weight:600; border-top:1px solid var(--ink); padding-top:6px; }
   .printed small { display:block; font-weight:400; color:var(--muted); font-size:12px; }
   .note { font-size:12.5px; color:var(--muted); margin:14px 0 0; }
@@ -51,10 +53,10 @@
   .btn:disabled { opacity:.6; cursor:wait; }
   .btn-ghost { background:#fff; color:var(--accent); border:1px solid var(--accent); }
   footer { text-align:center; color:var(--muted); font-size:12px; padding:10px 0 30px; }
-  .overlay { position:fixed; inset:0; background:rgba(20,25,32,.6); display:none; place-items:center; padding:16px; z-index:10; }
+  .overlay { position:fixed; inset:0; background:rgba(10,50,30,.45); display:none; place-items:center; padding:16px; z-index:10; }
   .overlay.show { display:grid; }
   .modal { background:#fff; border-radius:16px; padding:28px; max-width:440px; width:100%; text-align:center; }
-  .check { width:60px; height:60px; border-radius:50%; background:#e7f6ee; color:var(--ok); display:grid; place-items:center; font-size:30px; margin:0 auto 12px; }
+  .check { width:60px; height:60px; border-radius:50%; background:var(--blush); color:var(--accent); display:grid; place-items:center; font-size:30px; margin:0 auto 12px; }
   .modal h3 { margin:0 0 8px; }
   .modal p { color:#444; font-size:14px; margin:6px 0; }
   .modal .btns { display:flex; gap:10px; margin-top:18px; }
@@ -85,7 +87,7 @@
 <body>
 
 <header class="top">
-  <div class="brand"><div class="mark">SW</div><h1>SILVERWORKS</h1></div>
+  <div class="brand"><a class="mark" href="index.html" aria-label="Silverworks home">SW</a><h1>SILVERWORKS</h1></div>
   <div class="tag">Client Agreement &middot; Official Terms &amp; Conditions Portal</div>
 </header>
 
@@ -185,14 +187,12 @@
 <div class="overlay" id="success">
   <div class="modal">
     <div class="check">&#10003;</div>
-    <h3>Form Submitted Successfully!</h3>
-    <p>Your agreement has been processed successfully.</p>
+    <h3>Thank you!</h3>
+    <p>Thank you for filling out the form. Your agreement has been received.</p>
     <p>A PDF copy has been downloaded to your device.</p>
-    <p><strong>Confirmation email:</strong> <span id="sentTo"></span></p>
-    <p id="countdown" style="color:var(--muted)"></p>
+    <p id="emailStatus" style="color:var(--muted)"></p>
     <div class="btns">
-      <button type="button" class="btn btn-ghost" id="newEntry">Done / New Entry</button>
-      <button type="button" class="btn" id="goPortal">Go to Portal</button>
+      <button type="button" class="btn" id="newEntry">Done</button>
     </div>
   </div>
 </div>
@@ -338,7 +338,7 @@ function validate() {
 }
 
 /* ---------- submit ---------- */
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async e => {
   e.preventDefault();
   if (!validate()) {
     const first = form.querySelector('.invalid');
@@ -348,7 +348,7 @@ form.addEventListener('submit', e => {
 
   const btn = $('submitBtn');
   btn.disabled = true;
-  btn.textContent = 'Generating PDF...';
+  btn.textContent = 'Submitting...';
 
   const tx = {
     id: SW.generateId(),
@@ -365,12 +365,11 @@ form.addEventListener('submit', e => {
     signature: { dataUrl: sig.toDataURL('image/jpeg', 0.92), width: sig.width, height: sig.height },
   };
 
-  let saved = true;
-  try { SW.addTransaction(tx); }
-  catch (err) { saved = false; console.error(err); }
-
+  // 1. Build the PDF and download it for the client
+  let pdfDoc;
   try {
-    SW.buildPDF(tx).save(`${tx.serial.replace(/[^A-Za-z0-9_-]+/g, '_')}.pdf`);
+    pdfDoc = SW.buildPDF(tx);
+    pdfDoc.save(`${tx.serial.replace(/[^A-Za-z0-9_-]+/g, '_')}.pdf`);
   } catch (err) {
     console.error(err);
     alert('The PDF could not be generated: ' + err.message);
@@ -379,26 +378,46 @@ form.addEventListener('submit', e => {
     return;
   }
 
-  if (!saved) {
-    alert('Your PDF was downloaded, but the record could not be saved to the portal (storage may be full). Please inform your branch.');
-  }
+  // 2. Keep a copy in this browser so the portal still shows it until the portal reads the database
+  try { SW.addTransaction(tx); } catch (err) { console.error(err); }
 
-  $('sentTo').textContent = tx.clientEmail;
+  // 3. Save to the database and email the client
   $('success').classList.add('show');
-
-  if (saved) {
-    let secs = 3;
-    const tick = () => {
-      if (secs <= 0) { location.href = SW.CONFIG.PORTAL_URL; return; }
-      $('countdown').textContent = `Redirecting to the production portal in ${secs}...`;
-      secs--;
-      redirectTimer = setTimeout(tick, 1000);
-    };
-    tick();
-  }
+  $('emailStatus').textContent = 'Saving your agreement and sending the confirmation email...';
+  const result = await submitToServer(pdfDoc, tx);
+  $('emailStatus').textContent = result.message;
 });
 
-$('goPortal').addEventListener('click', () => { location.href = SW.CONFIG.PORTAL_URL; });
+async function submitToServer(pdfDoc, tx) {
+  try {
+    const pdfBase64 = pdfDoc.output('datauristring').split(',')[1];
+    const res = await fetch('/api/submit-agreement', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        serial: tx.serial,
+        branch: tx.branch,
+        date: tx.date,
+        clientName: tx.clientName,
+        retailerName: tx.retailerName,
+        waiverIS: tx.waiverIS,
+        clientEmail: tx.clientEmail,
+        pdfBase64,
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      return { message: `Your agreement could not be saved (${data.error || 'server responded ' + res.status}). Your PDF copy was downloaded. Please inform your branch.` };
+    }
+    if (data.emailSent) {
+      return { message: `Confirmation email sent to ${tx.clientEmail}.` };
+    }
+    return { message: `Your agreement was saved, but the confirmation email could not be sent (${data.emailError}). Please give the client their PDF copy.` };
+  } catch (err) {
+    console.error(err);
+    return { message: 'Your agreement could not be saved because of a connection problem. Your PDF copy was downloaded. Please inform your branch.' };
+  }
+}
 
 $('newEntry').addEventListener('click', () => {
   clearTimeout(redirectTimer);
