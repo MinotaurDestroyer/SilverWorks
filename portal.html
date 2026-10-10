@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silverworks - Production Portal</title>
 <style>
-  :root { --ink:#1d232b; --muted:#6b7480; --line:#d9dee5; --silver:#aab2bd; --accent:#2f3d4f; --bg:#eef1f5; --danger:#b42318; }
+  :root { --ink:#123524; --muted:#4F6F5E; --line:#D2F5E2; --silver:#50C878; --accent:#0F7A4F; --bg:#EEF9F3; --rose:#50C878; --blush:#D2F5E2; --danger:#b42318; }
   * { box-sizing:border-box; }
   [hidden] { display:none !important; }
   body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--ink); }
   .brand { display:inline-flex; align-items:center; gap:12px; }
-  .mark { width:40px; height:40px; border:2px solid var(--silver); border-radius:10px; display:grid; place-items:center; font-weight:800; color:#fff; letter-spacing:1px; }
+  .mark { width:40px; height:40px; border:2px solid #EEF9F3; border-radius:10px; display:grid; place-items:center; font-weight:800; color:#fff; letter-spacing:1px; }
+  a.mark { text-decoration:none; cursor:pointer; color:#fff; }
+  a.mark:focus-visible { outline:2px solid var(--rose); outline-offset:3px; }
   .brand strong { letter-spacing:3px; font-size:18px; color:#fff; display:block; }
-  .brand .sub { color:var(--silver); font-size:12px; }
-  header.top { background:linear-gradient(135deg,#1d232b,#3a4656); padding:16px 22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .brand .sub { color:#EEF9F3; font-size:12px; }
+  header.top { background:linear-gradient(135deg,#50C878,#0F7A4F); padding:16px 22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
   .who { color:#fff; font-size:14px; display:flex; align-items:center; gap:12px; }
   .card { background:#fff; border-radius:14px; box-shadow:0 6px 24px rgba(0,0,0,.06); padding:20px; }
   .btn, .btn-sm { border:none; border-radius:9px; background:var(--accent); color:#fff; font:inherit; font-weight:600; cursor:pointer; }
@@ -23,7 +25,7 @@
   .btn-light { background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.3); }
   input, select { font:inherit; font-size:16px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
   .btn, .btn-sm { min-height:40px; }
-  input:focus, select:focus { outline:2px solid #9fb3c8; border-color:transparent; }
+  input:focus, select:focus { outline:2px solid var(--rose); border-color:transparent; }
 
   /* login */
   .login { min-height:100vh; min-height:100dvh; display:grid; place-items:center; padding:16px; }
@@ -33,13 +35,14 @@
   .login-card label { display:block; font-size:13px; font-weight:600; margin:12px 0 6px; }
   .login-card input { width:100%; }
   .err { color:var(--danger); font-size:13px; min-height:18px; margin-top:10px; }
-  .login-card .brand .mark { border-color:var(--accent); color:var(--accent); }
-  .login-card .brand strong { color:var(--ink); }
-  .login-card .brand .sub { color:var(--muted); }
+  .login-card .brand { background:linear-gradient(135deg,#50C878,#0F7A4F); margin:-20px -20px 0; padding:18px 20px; border-radius:14px 14px 0 0; }
+  .login-card .brand .mark { border-color:var(--silver); color:#fff; }
+  .login-card .brand strong { color:#fff; }
+  .login-card .brand .sub { color:var(--silver); }
 
   /* dashboard */
   main { max-width:1100px; margin:20px auto; padding:0 14px 40px; }
-  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:14px; margin-bottom:16px; }
   .stat .num { font-size:28px; font-weight:700; }
   .stat .lbl { color:var(--muted); font-size:13px; margin-top:2px; }
   .toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
@@ -48,17 +51,17 @@
   .table-wrap { overflow-x:auto; padding:0; }
   table { width:100%; border-collapse:collapse; font-size:14px; }
   th, td { padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap; }
-  th { background:#f7f8fa; font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); }
+  th { background:#EEF9F3; font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); }
   .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; }
-  .badge { padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; background:#eef1f5; color:#333; }
+  .badge { padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; background:var(--blush); color:var(--ink); }
   .badge.pending { background:#fff4e5; color:#8a4b00; }
-  .badge.approved { background:#e7f0ff; color:#1d4ed8; }
+  .badge.sent-to-production { background:#e7f0ff; color:#1d4ed8; }
   .badge.in-production { background:#f1e9ff; color:#6b21a8; }
   .badge.completed { background:#e7f6ee; color:#067647; }
   .empty { text-align:center; padding:40px; color:var(--muted); }
 
   /* modal */
-  .overlay { position:fixed; inset:0; background:rgba(20,25,32,.6); display:none; place-items:center; padding:16px; z-index:10; }
+  .overlay { position:fixed; inset:0; background:rgba(10,50,30,.45); display:none; place-items:center; padding:16px; z-index:10; }
   .overlay.show { display:grid; }
   .modal { background:#fff; border-radius:16px; width:100%; max-width:640px; max-height:90vh; overflow:auto; padding:22px; }
   .modal-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
@@ -116,9 +119,9 @@
 <!-- LOGIN -->
 <section id="loginView" class="login">
   <div class="card login-card">
-    <div class="brand"><div class="mark">SW</div><div><strong>SILVERWORKS</strong><div class="sub">Production Portal</div></div></div>
+    <div class="brand"><a class="mark" href="index.html" aria-label="Silverworks home">SW</a><div><strong>SILVERWORKS</strong><div class="sub">Production Portal</div></div></div>
     <h2>Sign in</h2>
-    <p>Branch users see their branch's transactions. Production Head sees all branches.</p>
+    <p>Branches see their own forms. Production sees forms sent to production.</p>
     <form id="loginForm">
       <label for="username">Username</label>
       <input id="username" autocomplete="username" required>
@@ -133,7 +136,7 @@
 <!-- APP -->
 <div id="appView" hidden>
   <header class="top">
-    <div class="brand"><div class="mark">SW</div><div><strong>SILVERWORKS</strong><div class="sub" id="scope"></div></div></div>
+    <div class="brand"><a class="mark" href="index.html" aria-label="Silverworks home">SW</a><div><strong>SILVERWORKS</strong><div class="sub" id="scope"></div></div></div>
     <div class="who"><span id="whoami"></span><button class="btn-sm btn-light" id="logoutBtn">Log out</button></div>
   </header>
 
@@ -166,8 +169,7 @@
     <div class="modal-foot">
       <button class="btn-sm btn-ghost" id="mPdf">Download PDF</button>
       <span class="spacer"></span>
-      <select id="mStatus"></select>
-      <button class="btn-sm" id="mSave">Save status</button>
+      <button class="btn-sm" id="mAction" hidden></button>
     </div>
   </div>
 </div>
@@ -210,8 +212,8 @@ function init() {
   $('loginView').hidden = true;
   $('appView').hidden = false;
   $('whoami').textContent = session.displayName;
-  $('scope').textContent = session.role === 'production_head'
-    ? 'Production Head \u00B7 All branches'
+  $('scope').textContent = session.role === 'super_admin' ? 'Super Admin \u00B7 All forms'
+    : session.role === 'production_head' ? 'Production \u00B7 Forms sent to production'
     : 'Branch: ' + session.branch;
 
   const sel = $('statusFilter');
@@ -235,6 +237,7 @@ function render() {
   const count = s => all.filter(t => t.status === s).length;
   $('stats').innerHTML = [
     ['Total', all.length], ['Pending', count('Pending')],
+    ['Sent to Production', count('Sent to Production')],
     ['In Production', count('In Production')], ['Completed', count('Completed')],
   ].map(([l, v]) => `<div class="card stat"><div class="num">${v}</div><div class="lbl">${l}</div></div>`).join('');
 
@@ -266,6 +269,19 @@ function accessibleTx(id) {
   return SW.visibleTransactions(session).find(t => t.id === id) || null;
 }
 
+const ACTION_LABELS = {
+  'Sent to Production': 'Send to Production',
+  'In Production': 'Mark as In Production',
+  'Completed': 'Mark as Completed',
+};
+
+function historyHtml(tx) {
+  const items = ['<li>Submitted: ' + esc(new Date(tx.createdAt).toLocaleString('en-PH')) + '</li>']
+    .concat((tx.statusLog || []).map(e =>
+      '<li>' + esc(e.status) + ': ' + esc(new Date(e.at).toLocaleString('en-PH')) + ' by ' + esc(e.by) + '</li>'));
+  return '<h4>Status History</h4><ul>' + items.join('') + '</ul>';
+}
+
 function kv(k, v) { return `<div class="kv"><span>${esc(k)}</span><strong>${esc(v || '-')}</strong></div>`; }
 
 function openTx(id) {
@@ -288,13 +304,12 @@ function openTx(id) {
     <img src="${tx.referenceImage.dataUrl}" alt="Reference image">
     <h4>Client E-Signature</h4>
     <img class="sigimg" src="${tx.signature.dataUrl}" alt="Client signature">
-    <p class="note">Terms and Conditions: accepted</p>`;
+    <p class="note">Terms and Conditions: accepted</p>
+    ${historyHtml(tx)}`;
 
-  const canEdit = SW.canChangeStatus(session);
-  $('mStatus').innerHTML = SW.CONFIG.STATUSES.map(s =>
-    `<option ${s === tx.status ? 'selected' : ''}>${esc(s)}</option>`).join('');
-  $('mStatus').hidden = !canEdit;
-  $('mSave').hidden = !canEdit;
+  const next = SW.nextStatus(session, tx);
+  $('mAction').hidden = !next;
+  $('mAction').textContent = next ? ACTION_LABELS[next] : '';
 
   $('modal').classList.add('show');
 }
@@ -312,11 +327,10 @@ $('mPdf').addEventListener('click', () => {
   SW.buildPDF(tx).save(`${tx.serial.replace(/[^A-Za-z0-9_-]+/g, '_')}.pdf`);
 });
 
-$('mSave').addEventListener('click', () => {
-  // Only the Production Head may change status
-  if (!SW.canChangeStatus(session) || !openId) return;
-  if (!accessibleTx(openId)) return;
-  SW.updateTransaction(openId, { status: $('mStatus').value });
+$('mAction').addEventListener('click', () => {
+  if (!openId) return;
+  const result = SW.advanceStatus(session, openId);
+  if (!result) { alert('This form cannot be updated from your account.'); return; }
   closeModal();
   render();
 });
